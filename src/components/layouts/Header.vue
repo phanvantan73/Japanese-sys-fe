@@ -1,6 +1,6 @@
 <template>
   <el-header>
-    <el-dropdown trigger="click">
+    <el-dropdown trigger="click" v-if="isLogin">
       <el-avatar
         :size="46" 
         @error="errorHandler"
@@ -17,6 +17,7 @@
         <el-dropdown-item @click.native="logout">Logout</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+    <Login v-else/>
   </el-header>
 </template>
 
@@ -33,17 +34,33 @@
 </style>
 
 <script>
-  export default {
-    name: 'Header',
-    data() {
-      return {
-        defaultAvatar: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
-      }
-    },
-    methods: {
-      logout() {
-      },
-      errorHandler: () => true
+import Login from '@/views/login/Index';
+import { mapState } from 'vuex';
+import { mapActions } from 'vuex';
+
+export default {
+  name: 'Header',
+  components: {
+    Login
+  },
+  data() {
+    return {
+      defaultAvatar: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
     }
-  };
+  },
+  computed: {
+    ...mapState({
+      isLogin: state => state.app.isLogin
+    })
+  },
+  methods: {
+    ...mapActions([
+      'getIsLogin'
+    ]),
+    logout() {
+      this.getIsLogin(false);
+    },
+    errorHandler: () => true
+  }
+};
 </script>
