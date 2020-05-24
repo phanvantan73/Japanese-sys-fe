@@ -1,22 +1,19 @@
-import { getUserInfo } from '@/api/user';
-
 const state = {
-  info: {}
+  isLogin: false
 };
 
 const mutations = {
-  SET_INFO: (_state, info) => {
-    _state.info = info;
+  SET_IS_LOGIN: (_state, isLogin) => {
+    _state.isLogin = isLogin;
   }
 };
 
 const actions = {
-  async getUser({
+  getIsLogin({
     commit
-  }) {
+  }, payload) {
     try {
-      const data = await getUserInfo();
-      commit('SET_INFO', data);
+      commit('SET_IS_LOGIN', payload);
 
       return Promise.resolve();
     } catch (error) {

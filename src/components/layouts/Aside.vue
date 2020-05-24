@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="200px">
+  <el-aside>
     <div class="top-logo"></div>
     <el-menu
       default-active="2"
