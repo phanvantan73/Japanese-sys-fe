@@ -6,35 +6,34 @@
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-submenu index="1">
+      active-text-color="#ffd04b"
+    >
+      <el-menu-item index="1">
+        <i class="el-icon-menu"></i>
+        <span>{{ $t('menu.home') }}</span>
+      </el-menu-item>
+      <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span>Navigator One</span>
+        <span>{{ $t('menu.courses.list') }}</span>
         </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item one</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">item four</template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-submenu>
+        <el-menu-item index="2-1">{{ $t('menu.courses.n1') }}</el-menu-item>
+        <el-menu-item index="2-2">{{ $t('menu.courses.n2') }}</el-menu-item>
+        <el-menu-item index="2-3">{{ $t('menu.courses.n3') }}</el-menu-item>
+        <el-menu-item index="2-4">{{ $t('menu.courses.n4') }}</el-menu-item>
+        <el-menu-item index="2-5">{{ $t('menu.courses.n5') }}</el-menu-item>
       </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span>Navigator Two</span>
-      </el-menu-item>
       <el-menu-item index="3">
         <i class="el-icon-document"></i>
-        <span>Navigator Three</span>
+        <span>{{ $t('menu.game') }}</span>
       </el-menu-item>
       <el-menu-item index="4">
         <i class="el-icon-setting"></i>
-        <span>Navigator Four</span>
+        <span>{{ $t('menu.word_research') }}</span>
+      </el-menu-item>
+      <el-menu-item index="5">
+        <i class="el-icon-setting"></i>
+        <span>{{ $t('menu.posts') }}</span>
       </el-menu-item>
     </el-menu>
   </el-aside>
@@ -43,11 +42,14 @@
 <style>
   .el-aside {
     color: #333;
-    background-color: rgb(238, 241, 246);
+    background-color: rgb(84, 92, 100);
+  }
+  .el-menu {
+    text-align: left;
+    border: none !important;
   }
   .top-logo {
     height: 100px;
-    background-color: pink;
   }
 </style>
 
