@@ -23,7 +23,7 @@
 
 <style>
   .el-header {
-    background-color: #B3C0D1;
+    background-color: none;
     line-height: 60px;
     text-align: right;
   }

@@ -16,6 +16,20 @@ const messages = {
     attributes: {
       email: 'email',
       password: 'password'
+    },
+    menu: {
+      home: 'Home',
+      courses: {
+        list: 'List of courses',
+        n1: 'N1',
+        n2: 'N2',
+        n3: 'N3',
+        n4: 'N4',
+        n5: 'N5',
+      },
+      game: 'Game',
+      word_research: 'Research word',
+      posts: 'List of posts'
     }
   },
   'vi': {
@@ -30,6 +44,20 @@ const messages = {
     attributes: {
       email: 'email',
       password: 'mật khẩu'
+    },
+    menu: {
+      home: 'Trang chủ',
+      courses: {
+        list: 'Danh sách khóa học',
+        n1: 'N1',
+        n2: 'N2',
+        n3: 'N3',
+        n4: 'N4',
+        n5: 'N5',
+      },
+      game: 'Giải trí',
+      word_research: 'Tra cứu từ',
+      posts: 'Danh sách bài viết'
     }
   }
 };
