@@ -10,11 +10,11 @@
         <img src="defaultAvatar"/>
       </el-avatar>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="logout">
+        <el-dropdown-item @click.native="handleLogout">
           <i class="el-icon-s-tools"></i>
           Setting
         </el-dropdown-item>
-        <el-dropdown-item @click.native="logout">Logout</el-dropdown-item>
+        <el-dropdown-item @click.native="handleLogout">Logout</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
     <Login v-else/>
@@ -37,6 +37,8 @@
 import Login from '@/views/login/Index';
 import { mapState } from 'vuex';
 import { mapActions } from 'vuex';
+import { logout } from '@/api/authenticate';
+import { removeToken } from '@/utils/auth';
 
 export default {
   name: 'Header',
@@ -57,8 +59,10 @@ export default {
     ...mapActions([
       'getIsLogin'
     ]),
-    logout() {
+    async handleLogout() {
+      await logout();
       this.getIsLogin(false);
+      removeToken();
     },
     errorHandler: () => true
   }

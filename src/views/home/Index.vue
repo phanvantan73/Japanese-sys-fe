@@ -1,52 +1,53 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="12">
-        <Carousel/>
-        <!-- <div style="width: 100%;">
-          <el-image src="https://laodongnhatban.com.vn/images/2019/12/03/danh-ngn-tieng-nhat1.jpg" fit="none">
-            <div slot="placeholder" class="image-slot">
-              Loading<span class="dot">...</span>
-            </div>
-          </el-image>
-        </div> -->
-        
+    <el-row :gutter="20">
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>Event 1</span>
+          </div>
+          <div v-for="o in 4" :key="o" class="text item">
+            {{'Description ' + o }}
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>Event 2</span>
+          </div>
+          <div v-for="o in 4" :key="o" class="text item">
+            {{'Description ' + o }}
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>Event 3</span>
+          </div>
+          <div v-for="o in 4" :key="o" class="text item">
+            {{'Description ' + o }}
+          </div>
+        </el-card>
       </el-col>
     </el-row>
-    <el-row>
-      <el-col></el-col>
-    </el-row>
-    <el-row>
-      <el-col></el-col>
-    </el-row>
-    <el-table :data="tableData">
-      <el-table-column prop="date" label="Date" width="140">
-      </el-table-column>
-      <el-table-column prop="name" label="Name" width="120">
-      </el-table-column>
-      <el-table-column prop="address" label="Address">
-      </el-table-column>
-    </el-table>
   </div>
 </template>
 
-<script>
-import Carousel from './components/Carousel';
+<style>
+  .box-card {
+    height: 75vh;
+  }
+</style>
 
+<script>
 export default {
   name: 'Home',
   data() {
-    const item = {
-      date: '2016-05-02',
-      name: 'Tom',
-      address: 'No. 189, Grove St, Los Angeles'
-    };
     return {
-      tableData: Array(20).fill(item)
+      
     }
-  },
-  components: {
-    Carousel
   }
 };
 </script>

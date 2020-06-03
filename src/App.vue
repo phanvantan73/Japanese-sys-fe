@@ -23,5 +23,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   background-color: #f4fbfe;
+  height: 100vh;
 }
 </style>
