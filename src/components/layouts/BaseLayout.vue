@@ -11,6 +11,11 @@
   </el-container>
 </template>
 
+<style>
+  .el-container {
+    height: 100vh;
+  }
+</style>
 <script>
   import Aside from '@/components/layouts/Aside';
   import Header from '@/components/layouts/Header';

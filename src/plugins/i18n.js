@@ -30,7 +30,25 @@ const messages = {
       game: 'Game',
       word_research: 'Research word',
       posts: 'List of posts'
-    }
+    },
+    lessons: {
+      list: {
+        default: 'List',
+        stt: 'STT',
+        word: 'Word',
+        speak: 'Speak',
+        mean: 'Mean',
+        sample: 'Sample',
+        guide: 'Guide',
+        hiragana: 'Hiragana',
+        kanji: 'Kanji'
+      },
+      sentence_sample: 'Sentence sample',
+      vocabulary: 'Vocabulary',
+      kanji: 'Kanji',
+      quiz: 'Quiz'
+    },
+    list_lessons: 'List of lessons'
   },
   'vi': {
     welcomeMsg: 'Chào mừng đến với ứng dụng Vue.js của bạn',
@@ -58,7 +76,25 @@ const messages = {
       game: 'Giải trí',
       word_research: 'Tra cứu từ',
       posts: 'Danh sách bài viết'
-    }
+    },
+    lessons: {
+      list: {
+        default: 'Danh sách',
+        stt: 'STT',
+        word: 'Từ vựng',
+        speak: 'Phát âm',
+        mean: 'Nghĩa của từ',
+        sample: 'Mẫu câu',
+        guide: 'Hướng dẫn dùng',
+        hiragana: 'Hiragana',
+        kanji: 'Kanji'
+      },
+      sentence_sample: 'Mẫu câu',
+      vocabulary: 'Từ vựng',
+      kanji: 'Kanji',
+      quiz: 'Luyện tập'
+    },
+    list_lessons: 'Danh sách bài học'
   }
 };
 

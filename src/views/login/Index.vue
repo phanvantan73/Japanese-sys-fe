@@ -42,7 +42,8 @@
 
 <script>
 import { mapActions } from 'vuex';
-import { handleLogin } from '@/api/authenticate';
+import { login } from '@/api/authenticate';
+import { setToken } from '@/utils/auth';
 
 export default {
   name: 'Login',
@@ -96,12 +97,13 @@ export default {
       this.$refs[formName].validate(async valid => {
         if (valid) {
           this.dialogFormVisible = false;
-          const data = await handleLogin({
+          const data = await login({
             email: this.form.email,
             password: this.form.password
           });
+          setToken(data.data.access_token);
           this.getIsLogin(data);
-          if (data.success) {
+          if (data.data.status) {
             this.$refs[formName].resetFields();
           }
         } else {

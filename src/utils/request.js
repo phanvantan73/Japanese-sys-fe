@@ -26,7 +26,6 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
-    console.log(response);
     if (response.data) {
       return response.data;
     }
@@ -35,7 +34,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log(error);
-    return Promise.reject(error);
+    // return Promise.reject(error);
   },
 );
 
