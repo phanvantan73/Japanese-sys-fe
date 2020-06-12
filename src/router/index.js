@@ -14,7 +14,7 @@ export const routes = [
     component: () => import('@/views/courses/n1/Index'),
     children: [
       {
-        path: '',
+        path: '/',
         component: () => import('@/views/courses/n1/lessons/Index')
       },
       {
@@ -28,7 +28,7 @@ export const routes = [
     component: () => import('@/views/courses/n2/Index'),
     children: [
       {
-        path: '',
+        path: '/',
         component: () => import('@/views/courses/n2/lessons/Index')
       },
       {
@@ -42,7 +42,7 @@ export const routes = [
     component: () => import('@/views/courses/n3/Index'),
     children: [
       {
-        path: '',
+        path: '/',
         component: () => import('@/views/courses/n3/lessons/Index')
       },
       {
@@ -56,7 +56,7 @@ export const routes = [
     component: () => import('@/views/courses/n4/Index'),
     children: [
       {
-        path: '',
+        path: '/',
         component: () => import('@/views/courses/n4/lessons/Index')
       },
       {
@@ -70,7 +70,7 @@ export const routes = [
     component: () => import('@/views/courses/n5/Index'),
     children: [
       {
-        path: '',
+        path: '/',
         component: () => import('@/views/courses/n5/lessons/Index')
       },
       {
@@ -83,6 +83,20 @@ export const routes = [
     path: '/word-research',
     name: 'WordResearch',
     component: () => import('@/views/word-research/Index')
+  },
+  {
+    path: '/list-of-posts',
+    component: () => import('@/views/list-of-posts/Index'),
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/list-of-posts/First')
+      },
+      {
+        path: ':id',
+        component: () => import('@/views/list-of-posts/Detail')
+      }
+    ]
   }
 ];
 
