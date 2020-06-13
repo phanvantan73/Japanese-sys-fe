@@ -14,3 +14,11 @@ export function logout() {
     method: 'POST'
   });
 }
+
+export function register(payload) {
+  return request({
+    url: '/api/v1/register',
+    method: 'POST',
+    data: payload
+  });
+}

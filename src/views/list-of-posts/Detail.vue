@@ -16,10 +16,13 @@
             <span>Post name {{ $route.params.id }}</span>
             <div class="rate-block">
               <span class="demonstration"></span>
-              <el-rate v-model="rate"></el-rate>
+              <el-rate v-model="rate" @change="handleChange"></el-rate>
             </div>
             <div class="description-block clearfix">
               <time class="time">"Mô tả"</time>
+            </div>
+            <div class="rate-action">
+              <el-button type="success" round :disabled="isDisabled">Vote</el-button>
             </div>
           </div>
         </el-card>
@@ -29,6 +32,9 @@
 </template>
 
 <style lang="scss" scoped>
+  .rate-action {
+    margin-top: 20px;
+  }
   .description-block {
     margin-top: 20px;
   }
@@ -136,8 +142,14 @@ export default {
       rate: null
     }
   },
+  computed: {
+    isDisabled() {
+      return this.rate ? false : true
+    }
+  },
   methods: {
-
+    handleChange() {
+    }
   }
 };
 </script>

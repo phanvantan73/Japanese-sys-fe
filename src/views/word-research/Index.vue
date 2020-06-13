@@ -69,7 +69,7 @@
       &:after {
         content: '';
         position: absolute;
-        top: 62px;
+        top: 61px;
         width: 20px;
         height: 20px;
         background: #6ab9e7;
