@@ -1,7 +1,7 @@
 <template>
-  <div class="login">
-    <el-button type="text" @click="dialogFormVisible = true">{{ $t('login') }}</el-button>
-    <el-dialog :title="$t('login')" :visible.sync="dialogFormVisible" :center="true">
+  <div class="login-block">
+    <el-button type="text" @click="dialogLoginFormVisible = true">{{ $t('login') }}</el-button>
+    <el-dialog :title="$t('login')" :visible.sync="dialogLoginFormVisible" :center="true">
       <el-divider><i class="el-icon-star-on"></i><i class="el-icon-star-on"></i><i class="el-icon-star-on"></i></el-divider>
       <el-form :model="form" status-icon :rules="rules" ref="form">
         <el-form-item 
@@ -24,7 +24,10 @@
   </div>
 </template>
 
-<style>
+<style scoped>
+  .login-block {
+    display: inline-block;
+  }
   .el-dialog__footer {
     padding: 0 !important;
   }
@@ -50,7 +53,7 @@ export default {
   data() {
     var validatePassword = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error(this.$t('validate.required', {field: this.$t('password')})));
+        callback(new Error(this.$t('validate.required', {field: this.$t('attributes.password')})));
       } else {
         callback();
       }
@@ -58,7 +61,7 @@ export default {
     var validateEmail = (rule, value, callback) => {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/; //eslint-disable-line
       if (value === '') {
-        callback(new Error(this.$t('validate.required', {field: this.$t('email')})));
+        callback(new Error(this.$t('validate.required', {field: this.$t('attributes.email')})));
       } else {
         if (!reg.test(value)) {
           callback(new Error(this.$t('validate.email')));
@@ -67,7 +70,7 @@ export default {
       }
     };
     return {
-      dialogFormVisible: false,
+      dialogLoginFormVisible: false,
       form: {
         email: '',
         password: '',
@@ -96,7 +99,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {
-          this.dialogFormVisible = false;
+          this.dialogLoginFormVisible = false;
           const data = await login({
             email: this.form.email,
             password: this.form.password

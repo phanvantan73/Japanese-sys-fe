@@ -17,7 +17,7 @@
         <el-dropdown-item @click.native="handleLogout">Logout</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <Login v-else/>
+    <Authenticate v-else/>
   </el-header>
 </template>
 
@@ -34,7 +34,7 @@
 </style>
 
 <script>
-import Login from '@/views/login/Index';
+import Authenticate from '@/views/authenticate/Index';
 import { mapState } from 'vuex';
 import { mapActions } from 'vuex';
 import { logout } from '@/api/authenticate';
@@ -43,7 +43,7 @@ import { removeToken } from '@/utils/auth';
 export default {
   name: 'Header',
   components: {
-    Login
+    Authenticate
   },
   data() {
     return {

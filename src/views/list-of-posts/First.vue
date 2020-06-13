@@ -3,7 +3,7 @@
     <el-col :span="24">
       <div class="notification">
         <div class="notification-content">
-          <div class="text">Chọn một bài viết để xem thông tin chi tiết</div>
+          <div class="text">Xem bài viết để biết thêm về văn hóa Nhật Bản</div>
         </div>
       </div>
       <div class="image-block">
@@ -59,7 +59,7 @@
       &:after {
         content: '';
         position: absolute;
-        top: 34px;
+        top: 61px;
         width: 20px;
         height: 20px;
         background: #6ab9e7;

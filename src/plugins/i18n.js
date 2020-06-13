@@ -7,15 +7,19 @@ const messages = {
   'en': {
     welcomeMsg: 'Welcome to Your Vue.js App',
     login: 'Login',
+    register: 'Register',
     email: 'Email',
     password: 'Password',
+    password_confirmation: 'Confirm password',
     validate: {
       required: 'Please input {field}',
-      email: 'Please input correct email address'
+      email: 'Please input correct email address',
+      password_confirmation: 'Confirm password is not match'
     },
     attributes: {
       email: 'email',
-      password: 'password'
+      password: 'password',
+      password_confirmation: 'confirm password'
     },
     menu: {
       home: 'Home',
@@ -53,15 +57,19 @@ const messages = {
   'vi': {
     welcomeMsg: 'Chào mừng đến với ứng dụng Vue.js của bạn',
     login: 'Đăng nhập',
+    register: 'Đăng ký mới',
     email: 'Email',
     password: 'Mật khẩu',
+    password_confirmation: 'Xác nhận mật khẩu',
     validate: {
       required: 'Hãy nhập {field}',
-      email: 'Hãy nhập email đúng định dạng'
+      email: 'Hãy nhập email đúng định dạng',
+      password_confirmation: 'Mật khẩu xác nhận không khớp'
     },
     attributes: {
       email: 'email',
-      password: 'mật khẩu'
+      password: 'mật khẩu',
+      password_confirmation: 'mật khẩu xác nhận'
     },
     menu: {
       home: 'Trang chủ',
