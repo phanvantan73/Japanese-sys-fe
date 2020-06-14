@@ -19,7 +19,8 @@ const messages = {
     attributes: {
       email: 'email',
       password: 'password',
-      password_confirmation: 'confirm password'
+      password_confirmation: 'confirm password',
+      keyword: 'keyword'
     },
     menu: {
       home: 'Home',
@@ -69,7 +70,8 @@ const messages = {
     attributes: {
       email: 'email',
       password: 'mật khẩu',
-      password_confirmation: 'mật khẩu xác nhận'
+      password_confirmation: 'mật khẩu xác nhận',
+      keyword: 'từ khóa'
     },
     menu: {
       home: 'Trang chủ',

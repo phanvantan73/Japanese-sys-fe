@@ -1,34 +1,41 @@
 <template>
-  <el-row>
-    <el-col :span="8">
-      <div class="image-block image">
-        <el-image
-          style="width: 80%"
-          src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-        >
-        </el-image>
-      </div>
-    </el-col>
-    <el-col :span="8">
-      <div class="post-title">
-        <el-card class="box-card" shadow="never">
-          <div style="padding: 14px;">
-            <span>Post name {{ $route.params.id }}</span>
-            <div class="rate-block">
-              <span class="demonstration"></span>
-              <el-rate v-model="rate" @change="handleChange"></el-rate>
+  <div class="post-detail-block">
+    <el-row>
+      <el-col :span="8">
+        <div class="image-block image">
+          <el-image
+            style="width: 80%"
+            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+          >
+          </el-image>
+        </div>
+      </el-col>
+      <el-col :span="8">
+        <div class="post-title">
+          <el-card class="box-card" shadow="never">
+            <div style="padding: 14px;">
+              <span>Post name {{ $route.params.id }}</span>
+              <div class="rate-block">
+                <span class="demonstration"></span>
+                <el-rate v-model="rate" @change="handleChange"></el-rate>
+              </div>
+              <div class="description-block clearfix">
+                <time class="time">"Mô tả"</time>
+              </div>
+              <div class="rate-action">
+                <el-button type="success" round :disabled="isDisabled">Vote</el-button>
+              </div>
             </div>
-            <div class="description-block clearfix">
-              <time class="time">"Mô tả"</time>
-            </div>
-            <div class="rate-action">
-              <el-button type="success" round :disabled="isDisabled">Vote</el-button>
-            </div>
-          </div>
-        </el-card>
-      </div>
-    </el-col>
-  </el-row>
+          </el-card>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="24">
+        
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -61,7 +68,7 @@
   }
 
   .el-card {
-    // border: none;
+    border: none;
   }
 
   .clearfix:before,

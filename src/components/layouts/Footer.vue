@@ -1,6 +1,6 @@
 <template>
 	<el-footer style="text-align: right; font-size: 12px">
-    <span>Footer</span>
+    <span>Copyright © 2020 by TanPV</span>
   </el-footer>
 </template>
 
