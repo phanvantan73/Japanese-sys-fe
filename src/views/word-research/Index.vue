@@ -7,13 +7,19 @@
         </div>
         <el-divider></el-divider>
         <div>
-          <el-input placeholder="Nhập từ khóa để tra cứu" v-model="keyword" class="input-with-select">
-            <el-select v-model="select_language" slot="prepend" placeholder="Chọn ngôn ngữ">
-              <el-option label="Tiếng Việt" value="1"></el-option>
-              <el-option label="Tiếng Nhật" value="2"></el-option>
-            </el-select>
-            <el-button slot="append" icon="el-icon-search" @click="handleClick"></el-button>
-          </el-input>
+          <el-form :model="form" :rules="rules" ref="form">
+            <el-form-item 
+              prop="keyword"
+            >
+              <el-input placeholder="Nhập từ khóa để tra cứu" v-model="form.keyword" class="input-with-select">
+                <el-select v-model="form.select_language" slot="prepend" placeholder="Chọn ngôn ngữ">
+                  <el-option label="Tiếng Việt" value="vi"></el-option>
+                  <el-option label="Tiếng Nhật" value="ja"></el-option>
+                </el-select>
+                <el-button slot="append" icon="el-icon-search" @click="submitForm('form')"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-form>
         </div>
         <div class="search-result">
           <el-row>
@@ -32,7 +38,19 @@
                 </el-image>
               </div>
             </el-col>
-            <el-col :span="16"></el-col>
+            <el-col :span="16">
+              <div class="word-wrap" v-for="(result, index) in results" :key="index">
+                <div class="word-title">{{ result.word }}</div>
+                <div class="word-kanji">{{ result.kanji }}</div>
+                <div class="word-mean">{{ result.mean }}</div>
+                <ul>
+                  <li class="example" v-for="(example, key) in result.examples" :key="key">
+                    <span class="ex-jp">{{ example.ex_jp }}</span>: 
+                    <span class="ex-vn"> {{ example.ex_vn }}</span>
+                  </li>
+                </ul>
+              </div>
+            </el-col>
           </el-row>
         </div>
       </div>
@@ -41,6 +59,32 @@
 </template>
 
 <style lang="scss">
+  .word-wrap {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    text-align: left;
+  }
+  .word-title {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+  .word-kanji {
+    font-family: MS PMincho,MS Mincho;
+    font-size: 18px;
+    line-height: 1.7!important;
+  }
+  .word-mean {
+    color: #900;
+  }
+  .ex-vn {
+    color: #888;
+  }
+  .ex-jp {
+    color: #2a84c9;
+    font-family: MS Mincho;
+    font-size: 18px;
+    opacity: .8;
+  }
   .image-block {
   }
   .notification {
@@ -101,7 +145,6 @@
     padding: 10px;
   }
   .bg-white {
-    height: 75vh;
     border-radius: 5px;
     border: solid 1px #DCDFE6;
     background-color: rgb(255, 255, 255);
@@ -113,22 +156,54 @@
   .input-with-select .el-input-group__prepend {
     background-color: #fff;
   }
+  .el-form-item__error {
+    margin-left: 150px;
+  }
 </style>
 
 <script>
-
+import { research } from '@/api/research'
 export default {
   name: 'WordResearch',
   data() {
+    var validateKeyword = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error(this.$t('validate.required', {field: this.$t('attributes.keyword')})));
+      } else {
+        callback();
+      }
+    };
     return {
-      keyword: '',
-      select_language: '',
+      results: [],
+      form: {
+        keyword: '',
+        select_language: '',
+      },
+      rules: {
+        keyword: [
+          { 
+            validator: validateKeyword,
+            trigger: 'blur'
+          }
+        ]
+      },
       url: require('@/assets/search.jpg')
     }
   },
   methods: {
-    handleClick() {
-      console.log(this.keyword, this.select_language)
+    async submitForm(formName) {
+      this.$refs[formName].validate(async valid => {
+        if (valid) {
+          const data = await research({
+            keyword: this.form.keyword,
+            selected_language: this.form.select_language
+          });
+          this.results = data.data.results
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
     }
   }
 };
