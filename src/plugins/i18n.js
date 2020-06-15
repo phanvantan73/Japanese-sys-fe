@@ -30,7 +30,7 @@ const messages = {
         n2: 'N2',
         n3: 'N3',
         n4: 'N4',
-        n5: 'N5',
+        n5: 'N5'
       },
       game: 'Game',
       word_research: 'Research word',
@@ -53,7 +53,25 @@ const messages = {
       kanji: 'Kanji',
       quiz: 'Quiz'
     },
-    list_lessons: 'List of lessons'
+    list_lessons: 'List of lessons',
+    lesson_1: 'Lesson 1',
+    lesson_2: 'Lesson 2',
+    lesson_3: 'Lesson 3',
+    lesson_4: 'Lesson 4',
+    lesson_5: 'Lesson 5',
+    lesson_6: 'Lesson 6',
+    lesson_7: 'Lesson 7',
+    lesson_8: 'Lesson 8',
+    lesson_9: 'Lesson 9',
+    lesson_10: 'Lesson 10',
+    lesson_11: 'Lesson 11',
+    lesson_12: 'Lesson 12',
+    lesson_13: 'Lesson 13',
+    post_1: 'Post 1',
+    post_2: 'Post 2',
+    post_3: 'Post 3',
+    post_4: 'Post 4',
+    post_5: 'Post 5'
   },
   'vi': {
     welcomeMsg: 'Chào mừng đến với ứng dụng Vue.js của bạn',
@@ -81,7 +99,7 @@ const messages = {
         n2: 'N2',
         n3: 'N3',
         n4: 'N4',
-        n5: 'N5',
+        n5: 'N5'
       },
       game: 'Giải trí',
       word_research: 'Tra cứu từ',
@@ -104,7 +122,25 @@ const messages = {
       kanji: 'Kanji',
       quiz: 'Luyện tập'
     },
-    list_lessons: 'Danh sách bài học'
+    list_lessons: 'Danh sách bài học',
+    lesson_1: 'Bài 1',
+    lesson_2: 'Bài 2',
+    lesson_3: 'Bài 3',
+    lesson_4: 'Bài 4',
+    lesson_5: 'Bài 5',
+    lesson_6: 'Bài 6',
+    lesson_7: 'Bài 7',
+    lesson_8: 'Bài 8',
+    lesson_9: 'Bài 9',
+    lesson_10: 'Bài 10',
+    lesson_11: 'Bài 11',
+    lesson_12: 'Bài 12',
+    lesson_13: 'Bài 13',
+    post_1: 'Bài viết về kimono',
+    post_2: 'Bài viết số 2',
+    post_3: 'Bài viết số 3',
+    post_4: 'Bài viết số 4',
+    post_5: 'Bài viết số 5'
   }
 };
 

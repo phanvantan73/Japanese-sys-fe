@@ -24,10 +24,10 @@
         <el-menu-item index="/courses/n2">{{ $t('menu.courses.n2') }}</el-menu-item>
         <el-menu-item index="/courses/n1">{{ $t('menu.courses.n1') }}</el-menu-item>
       </el-submenu>
-      <el-menu-item index="/games">
+      <!-- <el-menu-item index="/games">
         <i class="el-icon-document"></i>
         <span>{{ $t('menu.game') }}</span>
-      </el-menu-item>
+      </el-menu-item> -->
       <el-menu-item index="/word-research">
         <i class="el-icon-setting"></i>
         <span>{{ $t('menu.word_research') }}</span>
