@@ -30,7 +30,11 @@
                 </el-table-column>
                 <el-table-column prop="word" :label="$t('lessons.list.word')" width="140">
                 </el-table-column>
-                <el-table-column prop="audio" :label="$t('lessons.list.speak')" width="120">
+                <el-table-column :label="$t('lessons.list.speak')" width="120">
+                  <template slot-scope="scope">
+                    <div v-html="scope.row.audio"></div>
+                    <a href="javascript:;" @click="playMp4(scope.row.id)">play</a>
+                  </template>
                 </el-table-column>
                 <el-table-column prop="mean" :label="$t('lessons.list.mean')">
                 </el-table-column>
@@ -73,103 +77,123 @@ export default {
       tableData: [
         {
           word: 'わたし',
-          audio: 'Tom',
-          mean: 'tôi'
+          audio: '<audio id="mp3Mini_0" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/watashi.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/watashi.ogg"></audio>',
+          mean: 'tôi',
+          id: 'mp3Mini_0'
         },
         {
           word: 'わたしたち',
-          audio: 'Tom',
-          mean: 'chúng tôi, chúng ta'
+          audio: '<audio id="mp3Mini_2" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/watashitachi.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/watashitachi.ogg"></audio>',
+          mean: 'chúng tôi, chúng ta',
+          id: 'mp3Mini_2'
         },
         {
           word: 'あなた',
-          audio: 'Tom',
-          mean: 'anh/ chị/ ông/ bà'
+          audio: '<audio id="mp3Mini_4" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/anata.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/anata.ogg"></audio>',
+          mean: 'anh/ chị/ ông/ bà',
+          id: 'mp3Mini_4'
         },
         {
           word: 'あのひと',
-          audio: 'Tom',
-          mean: 'người kia, người đó'
+          audio: '<audio id="mp3Mini_6" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/anohito.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/anohito.ogg"></audio>',
+          mean: 'người kia, người đó',
+          id: 'mp3Mini_6'
         },
         {
           word: 'あのかた',
-          audio: 'Tom',
-          mean: 'vị kia'
+          audio: '<audio id="mp3Mini_8" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/anokata.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/anokata.ogg"></audio>',
+          mean: 'vị kia',
+          id: 'mp3Mini_8'
         },
         {
           word: 'みなさん',
-          audio: 'Tom',
-          mean: 'các anh chị, các ông bà, các bạn, quý vị'
+          audio: '<audio id="mp3Mini_10" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/minasan.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/minasan.ogg"></audio>',
+          mean: 'các anh chị, các ông bà, các bạn, quý vị',
+          id: 'mp3Mini_10'
         },
         {
           word: '～さん',
-          audio: 'Tom',
-          mean: 'anh, chị, ông, bà'
+          audio: '<audio id="mp3Mini_12" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/san.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/san.ogg"></audio>',
+          mean: 'anh, chị, ông, bà',
+          id: 'mp3Mini_12'
         },
         {
           word: '～ちゃん',
-          audio: 'Tom',
-          mean: 'bé~'
+          audio: '<audio id="mp3Mini_14" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/chan.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/chan.ogg"></audio>',
+          mean: 'bé~',
+          id: 'mp3Mini_14'
         },
         {
           word: '～くん',
-          audio: 'Tom',
-          mean: 'cậu bé~'
+          audio: '<audio id="mp3Mini_16" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kun.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kun.ogg"></audio>',
+          mean: 'cậu bé~',
+          id: 'mp3Mini_16'
         },
         {
           word: '～じん',
-          audio: 'Tom',
-          mean: 'người (nước)~'
+          audio: '<audio id="mp3Mini_18" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/jin.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/jin.ogg"></audio>',
+          mean: 'người (nước)~',
+          id: 'mp3Mini_18'
         },
         {
           word: 'せんせい',
-          audio: 'Tom',
-          mean: 'thầy/ cô'
+          audio: '<audio id="mp3Mini_20" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/sensei.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/sensei.ogg"></audio>',
+          mean: 'thầy/ cô',
+          id: 'mp3Mini_20'
         },
         {
           word: 'きょうし',
-          audio: 'Tom',
-          mean: 'giáo viên'
+          audio: '<audio id="mp3Mini_22" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kyoushi.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kyoushi.ogg"></audio>',
+          mean: 'giáo viên',
+          id: 'mp3Mini_22'
         },
         {
           word: 'がくせい',
-          audio: 'Tom',
-          mean: 'học sinh, sinh viên'
+          audio: '<audio id="mp3Mini_24" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/gakusei.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/gakusei.ogg"></audio>',
+          mean: 'học sinh, sinh viên',
+          id: 'mp3Mini_24'
         },
         {
           word: 'かいしゃいん',
-          audio: 'Tom',
-          mean: 'nhân viên công ty'
+          audio: '<audio id="mp3Mini_26" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kaisyain.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kaisyain.ogg"></audio>',
+          mean: 'nhân viên công ty',
+          id: 'mp3Mini_26'
         },
         {
           word: 'しゃいん',
-          audio: 'Tom',
-          mean: 'nhân viên công ty ~'
+          audio: '<audio id="mp3Mini_28" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/syain.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/syain.ogg"></audio>',
+          mean: 'nhân viên công ty ~',
+          id: 'mp3Mini_28'
         },
         {
           word: 'ぎんこういん',
-          audio: 'Tom',
-          mean: 'nhân viên ngân hàng'
+          audio: '<audio id="mp3Mini_30" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/ginkouin.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/ginkouin.ogg"></audio>',
+          mean: 'nhân viên ngân hàng',
+          id: 'mp3Mini_30'
         },
         {
           word: 'いしゃ',
-          audio: 'Tom',
-          mean: 'bác sĩ'
+          audio: '<audio id="mp3Mini_32" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/isya.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/isya.ogg"></audio>',
+          mean: 'bác sĩ',
+          id: 'mp3Mini_32'
         },
         {
           word: 'けんきゅうしゃ',
-          audio: 'Tom',
-          mean: 'nhà nghiên cứu'
+          audio: '<audio id="mp3Mini_34" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kenkyuusya.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/kenkyuusya.ogg"></audio>',
+          mean: 'nhà nghiên cứu',
+          id: 'mp3Mini_34'
         },
         {
           word: 'エンジニア',
-          audio: 'Tom',
-          mean: 'kỹ sư'
+          audio: '<audio id="mp3Mini_36" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/k_enjinia.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/k_enjinia.ogg"></audio>',
+          mean: 'kỹ sư',
+          id: 'mp3Mini_36'
         },
         {
           word: 'だいがく',
-          audio: 'Tom',
-          mean: 'đại học, trường đại học'
+          audio: '<audio id="mp3Mini_38" preload="none"><source preload="none" type="audio/mpeg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/daigaku.mp3"><source preload="none" type="audio/ogg" src="https://www.lophoctiengnhat.com/public/lesson/kotoba/minna/b01/daigaku.ogg"></audio>',
+          mean: 'đại học, trường đại học',
+          id: 'mp3Mini_38'
         }
       ],
       guideData: [
@@ -302,6 +326,10 @@ export default {
     }
   },
   methods: {
+    playMp4(id) {
+      var audio = document.getElementById(id);
+      audio.play();
+    }
   }
 };
 </script>

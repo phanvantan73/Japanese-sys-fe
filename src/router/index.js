@@ -15,7 +15,7 @@ export const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/courses/n1/lessons/Index')
+        component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
@@ -29,7 +29,7 @@ export const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/courses/n2/lessons/Index')
+        component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
@@ -43,7 +43,7 @@ export const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/courses/n3/lessons/Index')
+        component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
@@ -57,7 +57,7 @@ export const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/courses/n4/lessons/Index')
+        component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
@@ -71,7 +71,7 @@ export const routes = [
     children: [
       {
         path: '/',
-        component: () => import('@/views/courses/n5/lessons/Index')
+        component: () => import('@/views/courses/First')
       },
       {
         path: ':id',

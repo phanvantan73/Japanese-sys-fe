@@ -5,7 +5,7 @@
         <div class="image-block image">
           <el-image
             style="width: 80%"
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            :src="kimono"
           >
           </el-image>
         </div>
@@ -14,7 +14,7 @@
         <div class="post-title">
           <el-card class="box-card" shadow="never">
             <div style="padding: 14px;">
-              <span>Post name {{ $route.params.id }}</span>
+              <span>Bài viết về kimono</span>
               <div class="rate-block">
                 <span class="demonstration"></span>
                 <el-rate v-model="rate" @change="handleChange"></el-rate>
@@ -32,7 +32,7 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        
+        <div v-html="post"></div>
       </el-col>
     </el-row>
   </div>
@@ -138,6 +138,9 @@
     max-height: 70px;
     word-break: break-word;
   }
+  .box-card {
+    height: auto;
+  }
 </style>
 
 <script>
@@ -145,8 +148,13 @@
 export default {
   name: 'Detail',
   data() {
+    var kimono2 = require('@/assets/kimono2.jpg');
+
     return {
-      rate: null
+      kimono: require('@/assets/kimono.jpg'),
+      rate: null,
+      post: `<p><strong>“Kimono“</strong> trong tiếng Nhật có nghĩa là: “đồ để mặc”, hòa phục hay còn có cái tên khác là y phục Nhật, chính là là loại y phục truyền thống của Nhật Bản. <strong>Kimono</strong> đã được người Nhật sử dụng trong suốt vài trăm năm. Ngày nay, do sự hội nhập quốc tế và tính chất cuộc sống nên <strong>Kimono</strong> không còn được sử dụng dụng hằng ngày như lúc trước mà thường chỉ được sử dụng vào các dịp lễ tết, trong đám tiệc hay các lễ hội. Ở Nhật, phụ nữ mặc <strong>kimono</strong> phổ biến hơn nam giới và thường có màu và hoa văn nổi bật. Trong khi đó,<strong> kimono</strong> dành cho nam thường không có hoa văn và màu tối hơn.</p>
+<p><img class="aligncenter wp-image-1564 td-animation-stack-type0-2" title="nhung-net-van-hoa-dac-trung-cua-Nhat-Ban" src="${kimono2}">Điểm đặc biệt của <strong>Kimono</strong> dành cho phụ nữ chính là bạn không cần phải lo liệu mình có mặc vừa hay không vì <strong>Kimono</strong> chỉ có một cỡ duy nhất, người mặc chỉ cần bó y phục lại cho phù hợp với bản thân mình. <strong>Kimono</strong> có 2 loại : <em>tay rộng và tay ngắn</em>. Phụ nữ đã lấy chồng thường không chuộng loại tay rộng bởi nó có thể gây ra nhiều trở ngại, vướng víu khi làm việc. Trước khi mặc<strong> kimono</strong> thì phải mặc “<em>juban”</em> trước. <strong>Juban</strong> là <em>một áo kimono lót để bảo vệ kimono khỏi dơ, sau đó cuốn bên phải vào trước, bên trái vào sau,sau đó được thắt lại bằng thắt lưng Obi làm bằng lụa, rất đắt tiền.</em> Trong trường hợp quấn bên trái trước thì có nghĩa là bạn sắp đi dự tang lễ. Việc mặc<strong> kimono</strong> rất mất thời gian, và gần như không thể tự mặc được. Người mặc <strong>kimono</strong> phải <em>đi guốc gỗ, và mang bít tất Tabi màu trắng</em></p>`
     }
   },
   computed: {
