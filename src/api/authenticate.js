@@ -22,3 +22,10 @@ export function register(payload) {
     data: payload
   });
 }
+
+export function getCourses(course) {
+  return request({
+    url: `/api/v1/courses/${course}`,
+    method: 'GET'
+  });
+}
