@@ -80,6 +80,20 @@ export const routes = [
     ]
   },
   {
+    path: '/courses/hiragana',
+    component: () => import('@/views/courses/hiragana/Index'),
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/courses/First')
+      },
+      // {
+      //   path: ':id',
+      //   component: () => import('@/views/courses/n5/lessons/Index')
+      // }
+    ]
+  },
+  {
     path: '/word-research',
     name: 'WordResearch',
     component: () => import('@/views/word-research/Index')

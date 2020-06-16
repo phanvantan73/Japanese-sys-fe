@@ -2,7 +2,7 @@
   <el-aside>
     <div class="top-logo"></div>
     <el-menu
-      default-active="2"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
@@ -18,6 +18,7 @@
           <i class="el-icon-location"></i>
         <span>{{ $t('menu.courses.list') }}</span>
         </template>
+        <el-menu-item index="/courses/hiragana">{{ $t('menu.courses.hiragana') }}</el-menu-item>
         <el-menu-item index="/courses/n5">{{ $t('menu.courses.n5') }}</el-menu-item>
         <el-menu-item index="/courses/n4">{{ $t('menu.courses.n4') }}</el-menu-item>
         <el-menu-item index="/courses/n3">{{ $t('menu.courses.n3') }}</el-menu-item>
