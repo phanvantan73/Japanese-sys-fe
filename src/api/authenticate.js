@@ -29,3 +29,18 @@ export function getCourses(course) {
     method: 'GET'
   });
 }
+
+export function getLessons(payload) {
+  return request({
+    url: '/api/v1/lessons',
+    method: 'GET',
+    params: payload
+  });
+}
+
+export function getLesson(id) {
+  return request({
+    url: `/api/v1/lessons/${id}`,
+    method: 'GET'
+  });
+}

@@ -1,78 +1,141 @@
 <template>
-  <el-row :gutter="20">
-    <el-col>
-      <el-tabs v-model="activeName">
-        <el-tab-pane :label="$t('lessons.sentence_sample')" name="first">
-          <el-row>
-            <el-col>
-              <el-table :data="guideData" height="65vh">
-                <el-table-column type="index" :label="$t('lessons.list.stt')">
-                </el-table-column>
-                <el-table-column :label="$t('lessons.list.sample')" width="200">
-                  <template slot-scope="scope">
-                    <span v-html="scope.row.sample"></span>
-                  </template>
-                </el-table-column>
-                <el-table-column :label="$t('lessons.list.guide')">
-                  <template slot-scope="scope">
-                    <span v-html="scope.row.guide"></span>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-        <el-tab-pane :label="$t('lessons.vocabulary')" name="second">
-          <el-row>
-            <el-col>
-              <el-table :data="tableData" height="65vh">
-                <el-table-column type="index" :label="$t('lessons.list.stt')">
-                </el-table-column>
-                <el-table-column prop="word" :label="$t('lessons.list.word')" width="140">
-                </el-table-column>
-                <el-table-column :label="$t('lessons.list.speak')" width="120">
-                  <template slot-scope="scope">
-                    <div v-html="scope.row.audio"></div>
-                    <a href="javascript:;" @click="playMp4(scope.row.id)">play</a>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="mean" :label="$t('lessons.list.mean')">
-                </el-table-column>
-              </el-table>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-        <el-tab-pane :label="$t('lessons.kanji')" name="third">
-          <el-row>
-            <el-col>
-              <el-table :data="kanjiData" height="65vh">
-                <el-table-column type="index" :label="$t('lessons.list.stt')">
-                </el-table-column>
-                <el-table-column prop="hiragana" :label="$t('lessons.list.hiragana')" width="140">
-                </el-table-column>
-                <el-table-column prop="kanji" :label="$t('lessons.list.kanji')" width="120">
-                </el-table-column>
-                <el-table-column prop="mean" :label="$t('lessons.list.mean')">
-                </el-table-column>
-              </el-table>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-        <!-- <el-tab-pane :label="$t('lessons.quiz')" name="fourth">Task</el-tab-pane> -->
-      </el-tabs>
-    </el-col>
-  </el-row>
+  <div>
+    <el-row :guiter="20">
+      <el-col :span="8">
+        <div class="image-block image">
+          <el-image
+            style="width: 80%"
+            :src="baseUrl + resource.path"
+          >
+          </el-image>
+        </div>
+      </el-col>
+      <el-col :span="8">
+        <div class="post-title">
+          <el-card class="box-card" shadow="never">
+            <div style="padding: 14px;">
+              <span>{{ lesson.name }}</span>
+              <div class="rate-block">
+                <span class="demonstration"></span>
+                <el-rate v-model="rate" @change="handleChange"></el-rate>
+              </div>
+              <div class="description-block clearfix">
+                <time class="time">"{{ lesson.description }}"</time>
+              </div>
+              <div class="rate-action">
+                <el-button type="success" round :disabled="isDisabled">{{ $t('buttons.vote') }}</el-button>
+              </div>
+            </div>
+          </el-card>
+        </div>
+      </el-col>
+    </el-row>
+    <el-divider></el-divider>
+    <el-row :gutter="20">
+      <el-col>
+        <el-tabs v-model="activeName">
+          <el-tab-pane :label="$t('lessons.sentence_sample')" name="first">
+            <el-row>
+              <el-col>
+                <el-table :data="guideData" height="65vh">
+                  <el-table-column type="index" :label="$t('lessons.list.stt')">
+                  </el-table-column>
+                  <el-table-column :label="$t('lessons.list.sample')" width="200">
+                    <template slot-scope="scope">
+                      <span v-html="scope.row.sample"></span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column :label="$t('lessons.list.guide')">
+                    <template slot-scope="scope">
+                      <span v-html="scope.row.guide"></span>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </el-col>
+            </el-row>
+          </el-tab-pane>
+          <el-tab-pane :label="$t('lessons.vocabulary')" name="second">
+            <el-row>
+              <el-col>
+                <el-table :data="tableData" height="65vh">
+                  <el-table-column type="index" :label="$t('lessons.list.stt')">
+                  </el-table-column>
+                  <el-table-column prop="word" :label="$t('lessons.list.word')" width="140">
+                  </el-table-column>
+                  <el-table-column :label="$t('lessons.list.speak')" width="120">
+                    <template slot-scope="scope">
+                      <div v-html="scope.row.audio"></div>
+                      <a href="javascript:;" @click="playMp4(scope.row.id)">play</a>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="mean" :label="$t('lessons.list.mean')">
+                  </el-table-column>
+                </el-table>
+              </el-col>
+            </el-row>
+          </el-tab-pane>
+          <el-tab-pane :label="$t('lessons.kanji')" name="third">
+            <el-row>
+              <el-col>
+                <el-table :data="kanjiData" height="65vh">
+                  <el-table-column type="index" :label="$t('lessons.list.stt')">
+                  </el-table-column>
+                  <el-table-column prop="hiragana" :label="$t('lessons.list.hiragana')" width="140">
+                  </el-table-column>
+                  <el-table-column prop="kanji" :label="$t('lessons.list.kanji')" width="120">
+                  </el-table-column>
+                  <el-table-column prop="mean" :label="$t('lessons.list.mean')">
+                  </el-table-column>
+                </el-table>
+              </el-col>
+            </el-row>
+          </el-tab-pane>
+          <!-- <el-tab-pane :label="$t('lessons.quiz')" name="fourth">Task</el-tab-pane> -->
+        </el-tabs>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+  .rate-action {
+    margin-top: 20px;
+  }
+  .description-block {
+    margin-top: 20px;
+  }
+  .rate-block {
+    margin-top: 20px;
+  }
+  .post-title {
+    text-align: left;
+  }
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+  .image {
+    width: 100%;
+    display: block;
+  }
+  .text {
+    font-size: 14px;
+  }
+  .el-card {
+    border: none;
+  }
 </style>
 
 <script>
-
+import { getLesson } from '@/api/authenticate'
 export default {
   name: 'Lesson',
   data() {
     return {
+      baseUrl: 'http://localhost:8000',
+      rate: null,
+      lesson: {},
+      resource: {},
       activeName: 'first',
       tableData: [
         {
@@ -325,11 +388,27 @@ export default {
       ]
     }
   },
+  computed: {
+    isDisabled() {
+      return this.rate ? false : true
+    }
+  },
   methods: {
     playMp4(id) {
       var audio = document.getElementById(id);
       audio.play();
+    },
+    handleChange() {
+    },
+    async getLesson() {
+      const vm = this
+      const res = await getLesson(vm.$route.params.id)
+      vm.lesson = res.data.lesson
+      vm.resource = res.data.lesson.resource
     }
-  }
+  },
+  mounted() {
+    this.getLesson()
+  },
 };
 </script>
