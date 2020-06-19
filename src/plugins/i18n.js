@@ -75,7 +75,8 @@ const messages = {
     post_5: 'Post 5',
     buttons: {
       vote: 'Vote'
-    }
+    },
+    hiragana_alphabets: 'Hiragana alphabets'
   },
   'vi': {
     welcomeMsg: 'Chào mừng đến với ứng dụng Vue.js của bạn',
@@ -148,7 +149,8 @@ const messages = {
     post_5: 'Bài viết số 5',
     buttons: {
       vote: 'Vote'
-    }
+    },
+    hiragana_alphabets: 'Bảng chữ cái Hiragana'
   }
 };
 
