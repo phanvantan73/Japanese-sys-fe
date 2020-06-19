@@ -72,7 +72,10 @@ const messages = {
     post_2: 'Post 2',
     post_3: 'Post 3',
     post_4: 'Post 4',
-    post_5: 'Post 5'
+    post_5: 'Post 5',
+    buttons: {
+      vote: 'Vote'
+    }
   },
   'vi': {
     welcomeMsg: 'Chào mừng đến với ứng dụng Vue.js của bạn',
@@ -142,7 +145,10 @@ const messages = {
     post_2: 'Bài viết số 2',
     post_3: 'Bài viết số 3',
     post_4: 'Bài viết số 4',
-    post_5: 'Bài viết số 5'
+    post_5: 'Bài viết số 5',
+    buttons: {
+      vote: 'Vote'
+    }
   }
 };
 

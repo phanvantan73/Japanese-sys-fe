@@ -8,11 +8,11 @@
         <el-divider></el-divider>
         <el-timeline>
           <el-timeline-item
-            v-for="(activity, index) in activities"
+            v-for="(lesson, index) in lessons"
             :key="index"
-            :timestamp="activity.timestamp">
-            <router-link :to="`/courses/n5/${index + 1}`">
-              {{ activity.content }}
+            :timestamp="lesson.created_at">
+            <router-link :to="`/courses/n5/${lesson.id}`">
+              {{ lesson.name }}
             </router-link>
           </el-timeline-item>
         </el-timeline>
@@ -43,12 +43,12 @@
 </style>
 
 <script>
-
+import { getLessons } from '@/api/authenticate'
 export default {
   name: 'N5',
   data() {
-    
     return {
+      lessons: [],
       activities: [
         {
           content: this.$t('lesson_1'),
@@ -74,7 +74,16 @@ export default {
     }
   },
   methods: {
-    
-  }
+    async getListOfLesson() {
+      const vm = this
+      const res = await getLessons({
+        course_id: 1
+      })
+      vm.lessons = res.data.lessons
+    }
+  },
+  mounted() {
+    this.getListOfLesson()
+  },
 };
 </script>

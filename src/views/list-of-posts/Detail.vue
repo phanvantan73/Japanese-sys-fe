@@ -23,13 +23,14 @@
                 <time class="time">"Mô tả"</time>
               </div>
               <div class="rate-action">
-                <el-button type="success" round :disabled="isDisabled">Vote</el-button>
+                <el-button type="success" round :disabled="isDisabled">{{ $t('buttons.vote') }}</el-button>
               </div>
             </div>
           </el-card>
         </div>
       </el-col>
     </el-row>
+    <el-divider></el-divider>
     <el-row>
       <el-col :span="24">
         <div v-html="post"></div>
