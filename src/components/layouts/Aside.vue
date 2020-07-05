@@ -1,6 +1,6 @@
 <template>
   <el-aside>
-    <div class="top-logo"></div>
+    <div class="top-logo" style="color: white; margin-top: 40px"><p>TanPV</p></div>
     <el-menu
       :default-active="$route.path"
       class="el-menu-vertical-demo"
@@ -13,12 +13,13 @@
         <i class="el-icon-menu"></i>
         <span>{{ $t('menu.home') }}</span>
       </el-menu-item>
-      <el-submenu index="/courses">
+      <el-submenu index="/courses" v-if="isLogin">
         <template slot="title">
           <i class="el-icon-location"></i>
         <span>{{ $t('menu.courses.list') }}</span>
         </template>
         <el-menu-item index="/courses/hiragana">{{ $t('menu.courses.hiragana') }}</el-menu-item>
+        <el-menu-item index="/courses/katakana">{{ $t('menu.courses.katakana') }}</el-menu-item>
         <el-menu-item index="/courses/n5">{{ $t('menu.courses.n5') }}</el-menu-item>
         <el-menu-item index="/courses/n4">{{ $t('menu.courses.n4') }}</el-menu-item>
         <el-menu-item index="/courses/n3">{{ $t('menu.courses.n3') }}</el-menu-item>
@@ -52,11 +53,18 @@
   }
   .top-logo {
     height: 100px;
+    font-size: 30px;
   }
 </style>
 
 <script>
-  export default {
-    name: 'Aside'
-  };
+import { mapState } from 'vuex';
+export default {
+  name: 'Aside',
+  computed: {
+    ...mapState({
+      isLogin: state => state.app.isLogin
+    })
+  },
+};
 </script>

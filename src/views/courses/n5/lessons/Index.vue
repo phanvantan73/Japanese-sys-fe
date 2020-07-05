@@ -1,36 +1,5 @@
 <template>
   <div>
-    <el-row :guiter="20">
-      <el-col :span="8">
-        <div class="image-block image">
-          <el-image
-            style="width: 80%"
-            :src="baseUrl + resource.path"
-          >
-          </el-image>
-        </div>
-      </el-col>
-      <el-col :span="8">
-        <div class="post-title">
-          <el-card class="box-card" shadow="never">
-            <div style="padding: 14px;">
-              <span>{{ lesson.name }}</span>
-              <div class="rate-block">
-                <span class="demonstration"></span>
-                <el-rate v-model="rate" @change="handleChange"></el-rate>
-              </div>
-              <div class="description-block clearfix">
-                <time class="time">"{{ lesson.description }}"</time>
-              </div>
-              <div class="rate-action">
-                <el-button type="success" round :disabled="isDisabled">{{ $t('buttons.vote') }}</el-button>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-    </el-row>
-    <el-divider></el-divider>
     <el-row :gutter="20">
       <el-col>
         <el-tabs v-model="activeName">
@@ -90,7 +59,68 @@
               </el-col>
             </el-row>
           </el-tab-pane>
-          <!-- <el-tab-pane :label="$t('lessons.quiz')" name="fourth">Task</el-tab-pane> -->
+          <el-tab-pane :label="$t('lessons.quiz')" name="fourth">
+            <el-row>
+              <el-col style="text-align: left;">Chọn nghĩa đúng</el-col>
+            </el-row>
+            <el-divider></el-divider>
+            <el-row v-for="(question, index) in questions" :key="index">
+              <el-col>
+                <div class="question-content">{{ index + 1 }}. {{ question.content }}</div>
+                <div class="answers-block">
+                  <el-row>
+                    <el-col :span="6" v-for="answer in question.answers" :key="answer.id">
+                      <div class="answer-content">
+                        <label :for="'answers[' + answer.id + ']'">
+                          <input
+                            type="radio"
+                            :name="'answers[' + question.id + ']'"
+                            :id="'answers[' + answer.id + ']'"
+                            @change="handleChangeRadio"
+                            :class="'answer_question_' + question.id"
+                            :data-question-id="question.id"
+                            :data-answer-id="answer.id"
+                          >
+                          {{ answer.content }}
+                        </label>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-col>
+            </el-row>
+            <el-divider ></el-divider>
+            <el-row>
+              <el-col>
+                  <el-button
+                    type="success"
+                    round
+                    @click="submitTest"
+                    :disabled="isDisabledSubmit"
+                  >Nộp bài</el-button>
+              </el-col>
+            </el-row>
+          </el-tab-pane>
+          <el-tab-pane label="Bài kiểm tra" name="fifth">
+            <el-row>
+              <el-col>
+                <el-table :data="tests" height="65vh">
+                  <el-table-column type="index" :label="$t('lessons.list.stt')">
+                  </el-table-column>
+                  <el-table-column label="Bài kiểm tra" width="200">
+                    <template>
+                      <span>Bài kiểm tra</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="Điểm số">
+                    <template slot-scope="scope">
+                      <span>{{ scope.row.result.score }}</span>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </el-col>
+            </el-row>
+          </el-tab-pane>
         </el-tabs>
       </el-col>
     </el-row>
@@ -98,6 +128,18 @@
 </template>
 
 <style lang="scss" scoped>
+  .question-content {
+    font-weight: 400;
+    font-size: 23px;
+    text-align: left;
+  }
+  .answers-block {
+    text-align: left;
+    padding: 10px 0;
+  }
+  .answer-content {
+    display: inline-block;
+  }
   .rate-action {
     margin-top: 20px;
   }
@@ -124,10 +166,21 @@
   .el-card {
     border: none;
   }
+  .fail-text {
+    color: red;
+  }
+  .true-text {
+    color: green;
+  }
+  .disabled-text {
+    color: #bbb;
+  }
 </style>
 
 <script>
 import { getLesson } from '@/api/authenticate'
+import { submitATest } from '@/api/authenticate'
+import { getListTest } from '@/api/authenticate'
 export default {
   name: 'Lesson',
   data() {
@@ -136,6 +189,10 @@ export default {
       rate: null,
       lesson: {},
       resource: {},
+      questions: [],
+      tests: [],
+      answers: [],
+      score: null,
       activeName: 'first',
       tableData: [
         {
@@ -391,6 +448,16 @@ export default {
   computed: {
     isDisabled() {
       return this.rate ? false : true
+    },
+    isDisabledSubmit() {
+      return this.answers.length ? false : true
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if (to.params.id !== from.params.id) {
+        this.getLesson()
+      }
     }
   },
   methods: {
@@ -405,10 +472,52 @@ export default {
       const res = await getLesson(vm.$route.params.id)
       vm.lesson = res.data.lesson
       vm.resource = res.data.lesson.resource
+      vm.questions = res.data.lesson.questions
+    },
+    handleChangeRadio(e) {
+      const questionId = e.target.getAttribute('data-question-id')
+      const answerId = e.target.getAttribute('data-answer-id')
+      const selectedQuestion = this.questions.filter(q => q.id == questionId)[0]
+      const selectedAnswer = selectedQuestion.answers.filter(a => a.id == answerId)[0]
+      const allAnswers = document.getElementsByClassName('answer_question_' + questionId)
+
+      for (var i = 0; i < allAnswers.length; i++) {
+        const element = allAnswers[i];
+        element.setAttribute('disabled', true)
+
+          // debugger // eslint-disable-line
+        if (element.getAttribute('data-answer-id') == answerId && selectedAnswer.is_true) {
+          element.parentElement.classList.add("true-text");
+        } else if (element.getAttribute('data-answer-id') == answerId && !selectedAnswer.is_true) {
+          element.parentElement.classList.add("fail-text");
+        } else {
+          element.parentElement.classList.add("disabled-text");
+        }
+      }
+      this.answers.push({
+        question_id: questionId,
+        answer_id: answerId
+      })
+    },
+    async submitTest() {
+      await submitATest({
+        answers: this.answers,
+        lesson_id: this.lesson.id
+      })
+      this.$notify({
+        message: 'Nộp bài thành công',
+        type: 'success'
+      })
+    },
+    async getListOfTest() {
+      const vm = this
+      const res = await getListTest()
+      vm.tests = res.data.tests
     }
   },
   mounted() {
     this.getLesson()
+    this.getListOfTest()
   },
 };
 </script>

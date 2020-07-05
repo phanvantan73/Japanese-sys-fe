@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="4">
+    <el-col :span="5">
       <div class="grid-content bg-white">
         <div class="top-title">
           <b>{{ $t('list_lessons') }}</b>
@@ -18,7 +18,7 @@
         </el-timeline>
       </div>
     </el-col>
-    <el-col :span="20">
+    <el-col :span="19">
       <div class="grid-content bg-white">
         <router-view></router-view>
       </div>
@@ -77,9 +77,12 @@ export default {
     async getListOfLesson() {
       const vm = this
       const res = await getLessons({
-        course_id: 1
+        course_id: 5
       })
       vm.lessons = res.data.lessons
+    },
+    navigateRoute(id) {
+      this.$router.push({ path: `/courses/n5/${id}` })
     }
   },
   mounted() {

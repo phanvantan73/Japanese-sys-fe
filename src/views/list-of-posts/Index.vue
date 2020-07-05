@@ -109,22 +109,22 @@ export default {
           content: this.$t('post_1'),
           timestamp: '2018-04-15'
         },
-        {
-          content: this.$t('post_2'),
-          timestamp: '2018-04-13'
-        },
-        {
-          content: this.$t('post_3'),
-          timestamp: '2018-04-11'
-        },
-        {
-          content: this.$t('post_4'),
-          timestamp: '2018-04-11'
-        },
-        {
-          content: this.$t('post_5'),
-          timestamp: '2018-04-11'
-        }
+        // {
+        //   content: this.$t('post_2'),
+        //   timestamp: '2018-04-13'
+        // },
+        // {
+        //   content: this.$t('post_3'),
+        //   timestamp: '2018-04-11'
+        // },
+        // {
+        //   content: this.$t('post_4'),
+        //   timestamp: '2018-04-11'
+        // },
+        // {
+        //   content: this.$t('post_5'),
+        //   timestamp: '2018-04-11'
+        // }
       ]
     }
   },

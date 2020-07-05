@@ -15,10 +15,12 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'n1',
         component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
+        name: 'n1-detail',
         component: () => import('@/views/courses/n1/lessons/Index')
       }
     ]
@@ -29,10 +31,12 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'n2',
         component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
+        name: 'n2-detail',
         component: () => import('@/views/courses/n2/lessons/Index')
       }
     ]
@@ -43,10 +47,12 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'n3',
         component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
+        name: 'n3-detail',
         component: () => import('@/views/courses/n3/lessons/Index')
       }
     ]
@@ -57,10 +63,12 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'n4',
         component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
+        name: 'n4-detail',
         component: () => import('@/views/courses/n4/lessons/Index')
       }
     ]
@@ -71,10 +79,12 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'n5',
         component: () => import('@/views/courses/First')
       },
       {
         path: ':id',
+        name: 'n5-detail',
         component: () => import('@/views/courses/n5/lessons/Index')
       }
     ]
@@ -85,12 +95,20 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'detail-hiragana',
         component: () => import('@/views/courses/First')
       },
-      // {
-      //   path: ':id',
-      //   component: () => import('@/views/courses/n5/lessons/Index')
-      // }
+    ]
+  },
+  {
+    path: '/courses/katakana',
+    component: () => import('@/views/courses/katakana/Index'),
+    children: [
+      {
+        path: '/',
+        name: 'detail-katakana',
+        component: () => import('@/views/courses/First')
+      },
     ]
   },
   {

@@ -31,7 +31,8 @@ const messages = {
         n3: 'N3',
         n4: 'N4',
         n5: 'N5',
-        hiragana: 'Hiragana'
+        hiragana: 'Hiragana',
+        katakana: 'Katakana'
       },
       game: 'Game',
       word_research: 'Research word',
@@ -105,7 +106,8 @@ const messages = {
         n3: 'N3',
         n4: 'N4',
         n5: 'N5',
-        hiragana: 'Hiragana'
+        hiragana: 'Hiragana',
+        katakana: 'Katakana'
       },
       game: 'Giải trí',
       word_research: 'Tra cứu từ',
