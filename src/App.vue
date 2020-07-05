@@ -6,11 +6,22 @@
 
 <script>
 import BaseLayout from '@/components/layouts/BaseLayout';
-
+import { getToken } from '@/utils/auth';
+import { mapActions } from 'vuex';
 export default {
   name: 'App',
   components: {
     BaseLayout
+  },
+  mounted() {
+    if (getToken()) {
+      this.getIsLogin(true)
+    }
+  },
+  methods: {
+    ...mapActions([
+      'getIsLogin'
+    ]),
   }
 }
 </script>

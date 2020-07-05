@@ -44,3 +44,18 @@ export function getLesson(id) {
     method: 'GET'
   });
 }
+
+export function submitATest(payload) {
+  return request({
+    url: '/api/v1/save-test',
+    method: 'POST',
+    data: payload
+  });
+}
+
+export function getListTest() {
+  return request({
+    url: '/api/v1/list-test',
+    method: 'GET'
+  });
+}

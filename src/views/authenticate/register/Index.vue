@@ -122,7 +122,7 @@ export default {
           const data = await register(this.formRegister)
           this.isRegisterSuccess = data.data.status
           this.$notify({
-            message: data.data.message,
+            message: 'Đăng ký thành công',
             type: 'success'
           });
         } else {

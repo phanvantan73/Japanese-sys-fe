@@ -55,7 +55,7 @@
 import { getCourses } from '@/api/authenticate'
 
 export default {
-  name: 'Hiragana',
+  name: 'Katakana',
   data() {
     return {
       baseUrl: 'http://localhost:8000',
@@ -68,7 +68,7 @@ export default {
   methods: {
     async getListAlphabets() {
       const vm = this
-      await getCourses('hiragana')
+      await getCourses('katakana')
         .then(res => {
           vm.alphabets = res.data.lessons
         })
